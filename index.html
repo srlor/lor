@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>خدمة القائمة الإلكترونية الاحترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffd700;
+            --primary-dark: #ff9d00;
+            --secondary: #68b0ab;
+            --secondary-dark: #4a8a85;
+            --dark: #1a1a2e;
+            --dark-blue: #16213e;
+            --darker-blue: #0f3460;
+            --text-light: #e0e0ff;
+            --text-gray: #a0a0c0;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #F44336;
+            --gold-light: rgba(255, 215, 0, 0.5);
+            --gold-medium: rgba(255, 215, 0, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            touch-action: pan-x pan-y;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-blue) 50%, var(--darker-blue) 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 10px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 200, 124, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
+                        radial-gradient(circle at 90% 80%, rgba(104, 176, 171, 0.1) 0%, rgba(255, 255, 255, 0) 20%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 15px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(22, 33, 62, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            border-radius: 4px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin: 0 auto 20px;
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+        
+        .packages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .package-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .package-card.basic {
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .package-card.professional {
+            border-top: 5px solid var(--primary);
+            transform: translateY(-20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
+                        0 0 35px rgba(255, 215, 0, 0.5);
+            /* تأثير النبض للباقة الاحترافية */
+            animation: pulse-gold 2s infinite;
+            /* خلفية متحركة بتقنية حديثة */
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.9));
+            background-size: 200% 200%;
+            animation: gradientBG 8s ease infinite;
+        }
+        
+        @keyframes pulse-gold {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 215, 0, 0.5),
+                            0 0 15px rgba(255, 215, 0, 0.3),
+                            0 20px 40px rgba(0, 0, 0, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
+                            0 0 30px rgba(255, 215, 0, 0.5),
+                            0 20px 40px rgba(0, 0, 0, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(255, 215, 0, 0.5),
+                            0 0 15px rgba(255, 215, 0, 0.3),
+                            0 20px 40px rgba(0, 0, 0, 0.6);
+            }
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
+                        0 0 35px rgba(255, 215, 0, 0.5);
+        }
+        
+        .package-card.professional:hover {
+            transform: translateY(-30px);
+        }
+        
+        .package-badge {
+            position: absolute;
+            top: 20px;
+            left: -30px;
+            background: var(--primary);
+            color: var(--dark);
+            font-weight: 800;
+            padding: 8px 35px;
+            transform: rotate(-45deg);
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        
+        .package-header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .package-title {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .package-card.basic .package-title {
+            color: var(--secondary);
+        }
+        
+        .package-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .package-card.basic .package-title::after {
+            background: var(--secondary);
+        }
+        
+        .package-price {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: var(--dark);
+            font-size: 1.8rem;
+            font-weight: 800;
+            padding: 12px 30px;
+            display: inline-block;
+            border-radius: 35px;
+            box-shadow: 0 8px 20px rgba(255, 157, 0, 0.5);
+            margin: 15px 0;
+        }
+        
+        .package-price.basic {
+            background: linear-gradient(45deg, var(--secondary), #4db6ac);
+        }
+        
+        .package-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .package-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            transition: all 0.3s;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .package-card.basic .package-feature {
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .package-feature:hover {
+            background: rgba(255, 215, 0, 0.15);
+            transform: translateX(8px);
+        }
+        
+        .feature-icon {
+            margin-left: 12px;
+            color: var(--primary);
+            min-width: 30px;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        .package-card.basic .feature-icon {
+            color: var(--secondary);
+        }
+        
+        .feature-text {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .feature-text strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .package-card.basic .feature-text strong {
+            color: var(--secondary);
+        }
+        
+        .express-service {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .express-service .price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+        
+        .discount-box {
+            background: rgba(104, 176, 171, 0.15);
+            border: 1px solid var(--secondary);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .discount-box .price {
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+        
+        .package-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .package-button {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(255, 157, 0, 0.5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-button.basic {
+            background: linear-gradient(45deg, var(--secondary), #4db6ac);
+            box-shadow: 0 8px 20px rgba(77, 182, 172, 0.5);
+        }
+        
+        .package-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 157, 0, 0.7);
+        }
+        
+        .package-button.basic:hover {
+            box-shadow: 0 12px 25px rgba(77, 182, 172, 0.7);
+        }
+        
+        .package-button i {
+            margin-left: 8px;
+        }
+        
+        .preview-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            font-weight: 700;
+            padding: 14px 25px;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+        }
+        
+        .preview-button.basic {
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+        
+        .preview-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .preview-button i {
+            margin-left: 8px;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+            opacity: 0.7;
+            filter: blur(1px);
+            box-shadow: 0 0 10px currentColor;
+        }
+        
+        .particle.square {
+            border-radius: 5px;
+        }
+        
+        .particle.triangle {
+            width: 0;
+            height: 0;
+            border-radius: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid currentColor;
+        }
+        
+        /* تأثيرات خلفية حديثة للباقة الاحترافية */
+        .premium-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--primary) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, var(--primary-dark) 0%, transparent 40%);
+            animation: rotateBackground 30s linear infinite;
+        }
+        
+        @keyframes rotateBackground {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) translateX(calc(100px * var(--direction))) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shine {
+            0% { left: -60%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        /* نافذة طلب الخدمة الجديدة */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+            padding: 15px;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-box {
+            background: var(--dark-blue);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            text-align: center;
+        }
+        
+        .popup-overlay.active .popup-box {
+            transform: translateY(0) scale(1);
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close-popup:hover {
+            transform: rotate(90deg);
+        }
+        
+        .popup-title {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.7rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .popup-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            border-radius: 4px;
+        }
+        
+        .whatsapp-number {
+            font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 25px 0;
+            direction: ltr;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .contact-button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.4s;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
+        }
+        
+        .contact-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            animation: shine 3s infinite;
+        }
+        
+        /* تصميم جديد لمعلومات الطلب */
+        .order-details {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: right;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .order-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+        }
+        
+        .order-detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .detail-label i {
+            margin-left: 10px;
+            color: var(--primary);
+        }
+        
+        .detail-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .detail-value.discount {
+            color: var(--success);
+        }
+        
+        .detail-value.express {
+            color: var(--warning);
+        }
+        
+        .highlight-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        
+        .highlight-box .title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        /* جدول المقارنة المحسن */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: var(--dark);
+            font-weight: 800;
+            padding: 16px;
+            text-align: center;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+        }
+        
+        .comparison-table th:first-child {
+            background: var(--darker-blue);
+            color: var(--primary);
+        }
+        
+        .comparison-table td {
+            padding: 14px 16px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+        
+        .comparison-table tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.07);
+        }
+        
+        .comparison-table tr:hover td {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .comparison-table td:first-child {
+            text-align: right;
+            padding-right: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(26, 26, 46, 0.8);
+        }
+        
+        .comparison-table td i.fa-check {
+            color: var(--success);
+            font-size: 1.3rem;
+            background: rgba(76, 175, 80, 0.15);
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .comparison-table td i.fa-times {
+            color: var(--danger);
+            font-size: 1.3rem;
+            background: rgba(244, 67, 54, 0.15);
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .feature-name {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .feature-name i {
+            color: var(--primary);
+        }
+        
+        /* تصميم للهواتف */
+        @media (max-width: 992px) {
+            .packages-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .package-card.professional {
+                transform: translateY(0);
+            }
+            
+            .package-card.professional:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 25px 10px;
+                margin-bottom: 30px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.0rem;
+            }
+            
+            .package-price {
+                font-size: 1.5rem;
+                padding: 10px 25px;
+            }
+            
+            .feature-text {
+                font-size: 1.0rem;
+            }
+            
+            .popup-box {
+                padding: 25px 15px;
+                max-width: 95%;
+            }
+            
+            .package-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .package-button, .preview-button {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                font-size: 0.85rem;
+            }
+            
+            header {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .package-card {
+                min-width: 280px;
+                padding: 25px 20px;
+            }
+            
+            .package-price {
+                font-size: 1.3rem;
+                padding: 8px 20px;
+            }
+            
+            .package-title {
+                font-size: 1.4rem;
+            }
+            
+            .popup-title {
+                font-size: 1.4rem;
+            }
+            
+            .whatsapp-number {
+                font-size: 1.1rem;
+                padding: 12px;
+            }
+            
+            .order-detail-item {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1><i class="fas fa-crown"></i> القائمة الإلكترونية الاحترافية</h1>
+                <p class="subtitle">حل متكامل لرفع مستوى مطعمك مع قائمة إلكترونية متطورة تجذب العملاء وتعزز تجربتهم</p>
+            </div>
+        </header>
+        
+        <div class="packages-container">
+            <!-- الباقة الأساسية -->
+            <div class="package-card basic">
+                <div class="package-header">
+                    <h2 class="package-title">الباقة الأساسية</h2>
+                    <div class="package-price basic">1,500 ريال</div>
+                    <p>قائمة إلكترونية احترافية مع ميزات أساسية</p>
+                </div>
+                
+                <ul class="package-features">
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-camera-retro"></i></div>
+                        <div class="feature-text">تصوير للوجبات <strong>(حسب محتويات المنيو)</strong></div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-search"></i></div>
+                        <div class="feature-text">فلتر ذكي للبحث حسب النوع</div>
+                    </li>
+                     <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-fire"></i></div>
+                        <div class="feature-text">شريط الاكثر طلباً (تساعد الزبون على الاختيار بشكل اسرع)</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="feature-text">عرض <strong>موقع المطعم الجغرافي</strong> على المنيو</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-phone-volume"></i></div>
+                        <div class="feature-text">أرقام التواصل بشكل سهل ومباشر</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                        <div class="feature-text">متوفر 5 الوان للمنيو</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-share-nodes"></i></div>
+                        <div class="feature-text">زر مشاركة لتسهيل المشاركة بين العملاء</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-sync"></i></div>
+                        <div class="feature-text">3 تحديثات سنوية مجانية</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="feature-text">نظام حماية متكامل ضد الاختراقات</div>
+                    </li>
+                </ul>
+                
+                <div class="package-cta">
+                    <button class="package-button basic" id="order-basic">
+                        <i class="fas fa-shopping-cart"></i> اطلب الآن
+                    </button>
+                    <button class="preview-button basic" id="preview-basic">
+                        <i class="fas fa-eye"></i> معاينة المنيو
+                    </button>
+                </div>
+            </div>
+            
+            <!-- الباقة الاحترافية -->
+            <div class="package-card professional">
+                <!-- خلفية متحركة حديثة -->
+                <div class="premium-background"></div>
+                
+                <div class="package-badge">الأكثر طلباً</div>
+                
+                <div class="package-header">
+                    <h2 class="package-title">الباقة الاحترافية</h2>
+                    <div class="package-price">2,150 ريال</div>
+                    <p>قائمة إلكترونية متكاملة مع ميزات متقدمة</p>
+                </div>
+                
+                <ul class="package-features">
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-camera-retro"></i></div>
+                        <div class="feature-text">تصوير للوجبات <strong>(حسب محتويات المنيو)</strong></div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-search"></i></div>
+                        <div class="feature-text">فلتر ذكي للبحث حسب النوع والسعر</div>
+                    </li>
+                     <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-fire"></i></div>
+                        <div class="feature-text">شريط الاكثر طلباً (تساعد الزبون على الاختيار بشكل اسرع)</div>
+                    </li>
+
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="feature-text">نظام الطلب عبر الواتساب من المنيو (يساعد الزبون على الطلب بشكل اسرع)</div>
+                    </li>
+
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="feature-text">عرض <strong>موقع المطعم الجغرافي</strong> في المنيو</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-phone-volume"></i></div>
+                        <div class="feature-text">أرقام التواصل بشكل سهل ومباشر</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                        <div class="feature-text">تخصيص الالوان حسب هوية المطعم</div>
+                    </li>
+                     <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-video"></i></div>
+                        <div class="feature-text">خلفية بتاثيرات متحركة مميزة</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-share-nodes"></i></div>
+                        <div class="feature-text">زر مشاركة لتسهيل المشاركة بين العملاء</div>
+                    </li>
+                    
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-star"></i></div>
+                        <div class="feature-text">تقييم العملاء عبر خرائط جوجل</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-sync"></i></div>
+                        <div class="feature-text">5 تحديثات سنوية مجانية</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="feature-text">نظام حماية متكامل ضد الاختراقات</div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-plus-circle"></i></div>
+                        <div class="feature-text"><strong>إضافة معلومات إضافية</strong> مجاناً (إضافتين)</div>
+                    </li>
+                </ul>
+                
+                <div class="package-cta">
+                    <button class="package-button" id="order-professional">
+                        <i class="fas fa-shopping-cart"></i> اطلب الان 
+                    </button>
+                    <button class="preview-button" id="preview-professional">
+                        <i class="fas fa-eye"></i> معاينة المنيو
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-container" style="text-align: center; margin: 30px 0;">
+            <button class="package-button" id="compare-button" style="max-width: 300px;">
+                <i class="fas fa-exchange-alt"></i> مقارنة الباقات
+            </button>
+        </div>
+    </div>
+    
+    <!-- نافذة طلب الخدمة الجديدة -->
+    <div class="popup-overlay" id="order-details-popup">
+        <div class="popup-box">
+            <button class="close-popup" id="close-order-details">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="popup-title" id="package-name">طلب الباقة الأساسية</h2>
+            
+            <div class="highlight-box">
+                <div class="title">السعر الأساسي</div>
+                <div class="price" id="base-price">1,500 ريال</div>
+            </div>
+            
+            <div class="order-details">
+                <div class="order-detail-item">
+                    <div class="detail-label">
+                        <i class="fas fa-clock"></i> الوقت المستغرق في العمل
+                    </div>
+                    <div class="detail-value">7 أيام عمل (غير مستعجل)</div>
+                </div>
+                
+                <div class="order-detail-item">
+                    <div class="detail-label">
+                        <i class="fas fa-bolt"></i> خدمة مستعجلة (تسليم خلال 3 أيام)
+                    </div>
+                    <div class="detail-value express">+450 ريال</div>
+                </div>
+                
+                <div class="order-detail-item">
+                    <div class="detail-label">
+                        <i class="fas fa-tag"></i> خصم عند توفر الصور الجاهزة
+                    </div>
+                    <div class="detail-value discount">500 ريال</div>
+                </div>
+            </div>
+            
+            <p>لطلب الخدمة يمكنك التواصل معنا عبر الواتساب</p>
+            
+            <div class="whatsapp-number">
+                <i class="fab fa-whatsapp"></i> +966 558644701
+            </div>
+            
+            <a href="https://wa.me/966558644701" class="contact-button" target="_blank">
+                <i class="fab fa-whatsapp"></i> التواصل عبر واتساب
+            </a>
+        </div>
+    </div>
+    
+    <!-- نافذة مقارنة الباقات -->
+    <div class="popup-overlay" id="compare-popup">
+        <div class="popup-box">
+            <button class="close-popup" id="close-compare">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="popup-title">مقارنة بين الباقات</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>الميزة</th>
+                        <th>الباقة الأساسية</th>
+                        <th>الباقة الاحترافية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-camera-retro"></i> التصوير الاحترافي</div></td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-search"></i> الفلتر حسب النوع</div></td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-search-dollar"></i> الفلتر حسب السعر</div></td>
+                        <td><i class="fas fa-times"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-map-marker-alt"></i> موقع المطعم الجغرافي</div></td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-phone-volume"></i> أرقام التواصل السهلة</div></td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-share-nodes"></i> زر المشاركة</div></td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-star"></i> تقييم العملاء عبر جوجل</div></td>
+                        <td><i class="fas fa-times"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-fire"></i> شريط الأكثر طلباً</div></td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fab fa-whatsapp"></i> نظام الطلب عبر الواتساب</div></td>
+                        <td><i class="fas fa-times"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-palette"></i> تخصيص الألوان</div></td>
+                        <td>5 ألوان ثابتة</td>
+                        <td>تخصيص كامل حسب الهوية</td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-video"></i> خلفية متحركة</div></td>
+                        <td><i class="fas fa-times"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-sync"></i> التحديثات السنوية</div></td>
+                        <td>3 تحديثات</td>
+                        <td>5 تحديثات</td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-plus-circle"></i> إضافة معلومات إضافية</div></td>
+                        <td><i class="fas fa-times"></i></td>
+                        <td>إضافتين مجاناً</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-shield-halved"></i> نظام حماية متكامل</div></td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-bolt"></i> الخدمة المستعجلة (3 أيام)</div></td>
+                        <td>+450 ريال</td>
+                        <td>+450 ريال</td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-tag"></i> الخصم عند توفر الصور</div></td>
+                        <td>500 ريال</td>
+                        <td>500 ريال</td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-money-bill-wave"></i> السعر الأساسي</div></td>
+                        <td>1,500 ريال</td>
+                        <td>2,150 ريال</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <footer style="text-align: center; padding: 20px; margin-top: 30px; color: var(--text-gray); font-size: 0.9rem; border-top: 1px solid rgba(255, 255, 255, 0.15); background: rgba(15, 23, 42, 0.7); border-radius: 12px; backdrop-filter: blur(5px);">
+        <p>© 2025 خدمة القائمة الإلكترونية الاحترافية. جميع الحقوق محفوظة.</p>
+        <p>SR LOR</p>
+    </footer>
+
+    <script>
+        // بدء التأثيرات عند تحميل الصفحة
+        window.addEventListener('load', () => {
+            // التحكم في النوافذ المنبثقة
+            const orderDetailsPopup = document.getElementById('order-details-popup');
+            const comparePopup = document.getElementById('compare-popup');
+            const orderBasicButton = document.getElementById('order-basic');
+            const orderProfessionalButton = document.getElementById('order-professional');
+            const previewBasicButton = document.getElementById('preview-basic');
+            const previewProfessionalButton = document.getElementById('preview-professional');
+            const compareButton = document.getElementById('compare-button');
+            const closeOrderDetails = document.getElementById('close-order-details');
+            const closeCompare = document.getElementById('close-compare');
+            const packageName = document.getElementById('package-name');
+            const basePrice = document.getElementById('base-price');
+            
+            orderBasicButton.addEventListener('click', function() {
+                packageName.textContent = 'طلب الباقة الأساسية';
+                basePrice.textContent = '1,500 ريال';
+                orderDetailsPopup.classList.add('active');
+            });
+            
+            orderProfessionalButton.addEventListener('click', function() {
+                packageName.textContent = 'طلب الباقة الاحترافية';
+                basePrice.textContent = '2,150 ريال';
+                orderDetailsPopup.classList.add('active');
+            });
+            
+            previewBasicButton.addEventListener('click', function() {
+                window.open('mnue1.html', '_blank');
+            });
+            
+            previewProfessionalButton.addEventListener('click', function() {
+                window.open('mnue2.html', '_blank');
+            });
+            
+            compareButton.addEventListener('click', function() {
+                comparePopup.classList.add('active');
+            });
+            
+            closeOrderDetails.addEventListener('click', function() {
+                orderDetailsPopup.classList.remove('active');
+            });
+            
+            closeCompare.addEventListener('click', function() {
+                comparePopup.classList.remove('active');
+            });
+            
+            // إغلاق عند النقر خارج الصندوق
+            orderDetailsPopup.addEventListener('click', function(e) {
+                if (e.target === orderDetailsPopup) {
+                    orderDetailsPopup.classList.remove('active');
+                }
+            });
+            
+            comparePopup.addEventListener('click', function(e) {
+                if (e.target === comparePopup) {
+                    comparePopup.classList.remove('active');
+                }
+            });
+            
+            // منع التكبير/التصغير على الأجهزة المحمولة
+            document.addEventListener('touchmove', function (event) {
+                if (event.scale !== 1) {
+                    event.preventDefault();
+                }
+            }, { passive: false });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو المطعم الذهبي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        :root {
+            --primary: #1e3a8a;
+            --light-blue: #3b82f6;
+            --gold: #d4a656;
+            --light-gold: #f8d568;
+            --white: #ffffff;
+            --light-bg: #f0f9ff;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e6f2ff 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233b82f6' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* رأس الصفحة */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--light-blue) 100%);
+            color: var(--white);
+            padding: 0.8rem 0;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            border-bottom: 3px solid var(--gold);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--light-gold);
+            text-shadow: 0 2px 8px rgba(212, 166, 86, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo span {
+            color: var(--light-gold);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rate-header-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .rate-header-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* تصميم جديد ومميز للفلاتر */
+        .filter-section {
+            position: relative;
+            max-width: 1200px;
+            margin: 20px auto 15px;
+            padding: 0 15px;
+        }
+        
+        .filter-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .filter-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--light-blue), #93c5fd);
+            animation: gradientShift 3s infinite alternate;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        .filter-title {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .filter-title i {
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+            color: var(--dark);
+            border: 2px solid #e2e8f0;
+            padding: 15px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.8) 50%, 
+                rgba(255,255,255,0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+        
+        .filter-btn:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .filter-btn i {
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.15);
+            border-color: var(--light-blue);
+        }
+        
+        .filter-btn:hover i {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--light-blue));
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
+        }
+        
+        .filter-btn.active i {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--white);
+        }
+        
+        .filter-btn.salads.active { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+        .filter-btn.meals.active { background: linear-gradient(135deg, var(--primary), #3b82f6); }
+        .filter-btn.sides.active { background: linear-gradient(135deg, var(--gold), #f8d568); color: #333; border-color: var(--gold); }
+        .filter-btn.drinks.active { background: linear-gradient(135deg, #0284c7, #0ea5e9); }
+        
+        /* قسم القائمة */
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .menu-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeIn 0.6s ease-out;
+            position: relative;
+            border: 1px solid rgba(224, 232, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .item-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .item-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+            animation: badgePulse 2s infinite;
+        }
+        
+        @keyframes badgePulse {
+            0% { box-shadow: 0 0 0 0 rgba(212, 166, 86, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(212, 166, 86, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 166, 86, 0); }
+        }
+        
+        .item-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--light-gray);
+        }
+        
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        /* تم تعديل أنماط صورة الريال */
+        .sar-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            margin-right: 2px;
+        }
+        
+        .item-description {
+            color: var(--gray);
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 0.88rem;
+            flex-grow: 1;
+        }
+        
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .item-calories {
+            display: inline-block;
+            background: var(--light-bg);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--light-gray);
+        }
+        
+        /* أزرار الاتصال */
+        .contact-buttons {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .contact-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.8) 50%, 
+                rgba(255,255,255,0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+        
+        .contact-btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .call { background: linear-gradient(135deg, var(--primary), var(--light-blue)); }
+        .share { background: linear-gradient(135deg, var(--gold), #c19a3e); }
+        
+        .contact-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-tooltip {
+            position: absolute;
+            top: -35px;
+            right: 50%;
+            transform: translateX(50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+            font-weight: 500;
+        }
+        
+        .contact-btn:hover .contact-tooltip {
+            opacity: 1;
+        }
+        
+        /* صفحة التقييم المنبثقة */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .rating-popup {
+            background: linear-gradient(135deg, var(--white) 0%, #f0f7ff 100%);
+            border-radius: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            transform: scale(0.95);
+            transition: transform 0.4s ease;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--light-blue);
+            animation: popupPulse 2s infinite;
+        }
+        
+        @keyframes popupPulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        
+        .overlay.active .rating-popup {
+            transform: scale(1);
+        }
+        
+        .rating-popup h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+        
+        .rating-popup p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .rating-stars {
+            margin: 15px 0;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+        
+        .rating-stars i {
+            cursor: pointer;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+        
+        .rating-stars i:hover {
+            transform: scale(1.1);
+        }
+        
+        .rate-btn {
+            background: linear-gradient(135deg, var(--primary), var(--light-blue));
+            color: var(--white);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 15px 0 10px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.25);
+        }
+        
+        .rate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-popup:hover {
+            color: var(--light-blue);
+            background: var(--light-bg);
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            text-align: center;
+            padding: 20px 15px 15px;
+            color: var(--gray);
+            margin-top: 25px;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, var(--white) 0%, #f8fafc 100%);
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .map-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--light-blue));
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            margin: 15px 0;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            max-width: 250px;
+            margin: 15px auto;
+            font-size: 0.95rem;
+        }
+        
+        .map-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+        }
+        
+        .copyright {
+            padding-top: 15px;
+            border-top: 1px solid rgba(224, 232, 255, 0.5);
+            margin-top: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* تأثيرات للعناصر عند التمرير */
+        @media (max-width: 900px) {
+            .menu {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .contact-buttons {
+                bottom: 12px;
+                right: 12px;
+            }
+            
+            .contact-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header-content {
+                padding: 0 10px;
+            }
+            
+            .header-actions {
+                gap: 8px;
+            }
+            
+            .rate-header-btn span {
+                display: none;
+            }
+            
+            .rate-header-btn {
+                padding: 7px;
+                width: 40px;
+                height: 40px;
+                justify-content: center;
+            }
+            
+            .rate-header-btn i {
+                margin: 0;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* تصغير المحتوى للهواتف */
+            .logo {
+                gap: 6px;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.1rem;
+            }
+            
+            .filter-btn {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .filter-btn i {
+                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .item-title {
+                font-size: 1rem;
+            }
+            
+            .item-price {
+                font-size: 1rem;
+            }
+            
+            .item-image {
+                height: 150px;
+            }
+            
+            .sar-icon {
+                width: 15px;
+                height: 15px;
+            }
+            
+            .contact-buttons {
+                gap: 8px;
+            }
+            
+            .contact-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .rating-popup {
+                padding: 15px;
+            }
+            
+            .rating-popup h2 {
+                font-size: 1.3rem;
+            }
+            
+            .rating-stars {
+                font-size: 1.8rem;
+            }
+            
+            .rate-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .logo h1 {
+                font-size: 1rem;
+            }
+            
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px 15px;
+        }
+        
+        .empty-state i {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+        
+        .empty-state h2 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .empty-state p {
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- رأس الصفحة -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <h1>المطعم <span>الذهبي</span></h1>
+            </div>
+            
+        </div>
+    </header>
+    
+    <!-- تصميم جديد ومميز للفلاتر -->
+    <div class="filter-section">
+        <div class="filter-container">
+            <div class="filter-title">
+                <i class="fas fa-filter"></i>
+                <span>فلتر قائمتنا الذهبية</span>
+            </div>
+            
+            <div class="filter-grid">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-star"></i>
+                    <span>الكل</span>
+                </button>
+                <button class="filter-btn salads" data-filter="سلطات">
+                    <i class="fas fa-leaf"></i>
+                    <span>سلطات</span>
+                </button>
+                <button class="filter-btn meals" data-filter="وجبات">
+                    <i class="fas fa-utensils"></i>
+                    <span>وجبات رئيسية</span>
+                </button>
+                <button class="filter-btn sides" data-filter="ايدامات">
+                    <i class="fas fa-bread-slice"></i>
+                    <span>إيدامات</span>
+                </button>
+                <button class="filter-btn drinks" data-filter="مشروبات">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>مشروبات</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- قائمة الطعام -->
+    <div class="menu-container">
+        <div class="menu" id="menu-container">
+            <!-- سيتم إضافة عناصر القائمة ديناميكيًا باستخدام JavaScript -->
+        </div>
+    </div>
+    
+    <!-- أزرار الاتصال -->
+    <div class="contact-buttons">
+        <div class="contact-btn whatsapp" title="واتساب">
+            <i class="fab fa-whatsapp"></i>
+            <span class="contact-tooltip">للطلبات الخارجية اتصل بنا</span>
+        </div>
+        <div class="contact-btn call" title="اتصل بنا">
+            <i class="fas fa-phone"></i>
+            <span class="contact-tooltip">للطلبات الخارجية اتصل بنا</span>
+        </div>
+        <div class="contact-btn share" title="مشاركة الموقع">
+            <i class="fas fa-share-alt"></i>
+        </div>
+    </div>
+    
+    <!-- صفحة التقييم المنبثقة -->
+    <div class="overlay" id="rating-overlay">
+        <div class="rating-popup">
+            <span class="close-popup" id="close-popup"><i class="fas fa-times"></i></span>
+            <h2>هل أعجبتك خدماتنا؟</h2>
+            <p>نتمنى تقييم تجربتك في مطعمنا لمساعدتنا على التحسين وتقديم خدمة أفضل</p>
+            
+            <div class="rating-stars">
+                <i class="far fa-star" data-value="1"></i>
+                <i class="far fa-star" data-value="2"></i>
+                <i class="far fa-star" data-value="3"></i>
+                <i class="far fa-star" data-value="4"></i>
+                <i class="far fa-star" data-value="5"></i>
+            </div>
+            
+            <button class="rate-btn" id="rate-button">
+                <i class="fas fa-map-marker-alt"></i> قيمنا على خرائط جوجل
+            </button>
+            
+            <p>شكراً لك على دعمنا وتقييمك!</p>
+        </div>
+    </div>
+    
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-content">
+            <a href="https://maps.google.com" target="_blank" class="map-button">
+                <i class="fas fa-map-marker-alt"></i> موقعنا على خرائط جوجل
+            </a>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة © المطعم الذهبي 2023 | هاتف: 011 123 4567</p>
+                <p>الرياض، حي السفارات، شارع الملك فهد</p>
+                <p>أوقات العمل: 10 صباحاً - 11 مساءً (يومياً)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // بيانات القائمة مع صور ثابتة
+        const menuItems = [
+            {
+                id: 1,
+                name: "سلطة يونانية",
+                description: "خس، طماطم، خيار، زيتون، جبنة فيتا، تتبيلة زيت زيتون وليمون",
+                price: 15,
+                type: "سلطات",
+                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 320,
+                popular: true
+            },
+            {
+                id: 2,
+                name: "سلطة سيزر بالدجاج",
+                description: "خس روماني، كروتونات، جبنة بارميزان، تتبيلة سيزر، دجاج مشوي",
+                price: 22,
+                type: "سلطات",
+                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 410,
+                popular: false
+            },
+            {
+                id: 3,
+                name: "برجر اللحم الذهبي",
+                description: "برجر لحم بقري مشوي، جبنة شيدر، خس، طماطم، بصل، صوص خاص، خبز بريوش",
+                price: 32,
+                type: "وجبات",
+                image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 780,
+                popular: true
+            },
+            {
+                id: 4,
+                name: "ستيك لحم بقطع الذهب",
+                description: "ستيك لحم بقري مشوي مع خضار سوتيه وبطاطس مشوية بالأعشاب",
+                price: 65,
+                type: "وجبات",
+                image: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 650,
+                popular: true
+            },
+            {
+                id: 5,
+                name: "دجاج مشوي بالأعشاب",
+                description: "دجاج مشوي مع أرز بسمتي وخضار مشكلة، صوص خاص بالأعشاب",
+                price: 38,
+                type: "وجبات",
+                image: "https://images.unsplash.com/photo-1603360946369-dc9bbd8143df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 520,
+                popular: false
+            },
+            {
+                id: 6,
+                name: "كبسة دجاج عربية",
+                description: "أرز كبسة مع دجاج مطبوخ على الطريقة التقليدية، مرفوق باللوز المحمص",
+                price: 42,
+                type: "وجبات",
+                image: "https://images.unsplash.com/photo-1603105037880-8802c0e0b86a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 680,
+                popular: false
+            },
+            {
+                id: 7,
+                name: "متبل الباذنجان المشوي",
+                description: "باذنجان مشوي مع طحينة وثوم وزيت زيتون وليمون، مرفوق بشرائح الخبز",
+                price: 18,
+                type: "ايدامات",
+                image: "https://images.unsplash.com/photo-1625944525533-473f1f0f0c5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 210,
+                popular: true
+            },
+            {
+                id: 8,
+                name: "حمص بالطحينة الذهبي",
+                description: "حمص مهروس مع طحينة وليمون وزيت زيتون وزعتر وزيت الذهب",
+                price: 16,
+                type: "ايدامات",
+                image: "https://images.unsplash.com/photo-1643081597545-75b4f0c0b59f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 280,
+                popular: false
+            },
+            {
+                id: 9,
+                name: "عصير برتقال طازج",
+                description: "عصير برتقال طازج مع قطع برتقال، مبرد بطريقة مثالية",
+                price: 14,
+                type: "مشروبات",
+                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 120,
+                popular: true
+            },
+            {
+                id: 10,
+                name: "ليمون بالنعناع الفاخر",
+                description: "عصير ليمون طازج مع أوراق النعناع الطازج، محلى بالعسل الطبيعي",
+                price: 12,
+                type: "مشروبات",
+                image: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 90,
+                popular: false
+            },
+            {
+                id: 11,
+                name: "قهوة عربية مميزة",
+                description: "قهوة عربية أصيلة مع هيل ومستكة، تقدم في دلة نحاسية",
+                price: 15,
+                type: "مشروبات",
+                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 30,
+                popular: true
+            },
+            {
+                id: 12,
+                name: "شاي بالنعناع الذهبي",
+                description: "شاي أسود مع أوراق النعناع الطازج، يقدم مع سكر أو عسل حسب الرغبة",
+                price: 10,
+                type: "مشروبات",
+                image: "https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+                calories: 40,
+                popular: false
+            }
+        ];
+
+        // العناصر في DOM
+        const menuContainer = document.getElementById('menu-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const ratingOverlay = document.getElementById('rating-overlay');
+        const closePopup = document.getElementById('close-popup');
+        const rateButton = document.getElementById('rate-button');
+        const stars = document.querySelectorAll('.rating-stars i');
+        const headerRateBtn = document.getElementById('header-rate-btn');
+
+        // صورة الريال
+        const riyalImage = "ريال.png";
+
+        // عرض عناصر القائمة
+        function renderMenu(items) {
+            menuContainer.innerHTML = '';
+            
+            if (items.length === 0) {
+                menuContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h2>لم يتم العثور على وجبات</h2>
+                        <p>جرب اختيار فئة مختلفة أو تحديث الفلتر الحالي</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            items.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.dataset.type = item.type;
+                
+                // إنشاء شارة إذا كانت الوجبة شعبية
+                const badge = item.popular 
+                    ? `<div class="item-badge">الأكثر طلباً</div>` 
+                    : '';
+                
+                menuItem.innerHTML = `
+                    <div class="item-image" style="background-image: url('${item.image}')">
+                        ${badge}
+                    </div>
+                    <div class="item-content">
+                        <div class="item-header">
+                            <div class="item-title">${item.name}</div>
+                            <div class="item-price">${item.price}<img src="${riyalImage}" alt="ريال" class="sar-icon"></div>
+                        </div>
+                        <div class="item-description">${item.description}</div>
+                        <div class="item-footer">
+                            <div class="item-calories">${item.calories} سعرة حرارية</div>
+                        </div>
+                    </div>
+                `;
+                
+                menuContainer.appendChild(menuItem);
+            });
+        }
+
+        // فلترة القائمة حسب النوع
+        function filterByType(type) {
+            if (type === 'all') {
+                renderMenu(menuItems);
+            } else {
+                const filteredItems = menuItems.filter(item => item.type === type);
+                renderMenu(filteredItems);
+            }
+        }
+
+        // فلترة حسب الأزرار
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.dataset.filter;
+                filterByType(filterValue);
+            });
+        });
+
+        // إدارة عرض نافذة التقييم
+        function manageRatingPopup() {
+            // تحقق من عدد الزيارات
+            let visitCount = localStorage.getItem('restaurantVisitCount') || 0;
+            visitCount = parseInt(visitCount) + 1;
+            localStorage.setItem('restaurantVisitCount', visitCount);
+            
+            // إذا كانت الزيارة الثانية، اعرض النافذة بعد تأخير
+            if (visitCount === 2) {
+                setTimeout(() => {
+                    ratingOverlay.classList.add('active');
+                }, 3000);
+            }
+        }
+
+        // إغلاق نافذة التقييم
+        closePopup.addEventListener('click', () => {
+            ratingOverlay.classList.remove('active');
+        });
+
+        // تقييم على خرائط جوجل
+        rateButton.addEventListener('click', () => {
+            window.open('https://maps.google.com', '_blank');
+            ratingOverlay.classList.remove('active');
+        });
+
+        // تقييم النجوم
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.dataset.value);
+                
+                stars.forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+        });
+
+        // أزرار الاتصال
+        document.querySelector('.whatsapp').addEventListener('click', () => {
+            window.open('https://wa.me/966500000000', '_blank');
+        });
+        
+        document.querySelector('.call').addEventListener('click', () => {
+            window.location.href = 'tel:+966500000000';
+        });
+        
+        document.querySelector('.share').addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'المطعم الذهبي',
+                    text: 'اكتشف قائمة الطعام الرائعة في المطعم الذهبي',
+                    url: window.location.href
+                });
+            } else {
+                alert('شارك الرابط: ' + window.location.href);
+            }
+        });
+
+        // زر التقييم في الهيدر
+        headerRateBtn.addEventListener('click', () => {
+            ratingOverlay.classList.add('active');
+        });
+
+        // التهيئة الأولية
+        renderMenu(menuItems);
+        manageRatingPopup();
+    </script>
+</body>
+</html>
