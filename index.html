@@ -1263,12 +1263,30 @@
                 }
             });
             
-            // منع التكبير/التصغير على الأجهزة المحمولة
-            document.addEventListener('touchmove', function (event) {
-                if (event.scale !== 1) {
+            // حل مشكلة التكبير/التصغير في الهواتف مع الحفاظ على التمرير
+            // منع التكبير/التصغير مع السماح بالتمرير
+            document.addEventListener('touchmove', function(event) {
+                // إذا كان هناك أكثر من إصبع (تكبير/تصغير) نمنع الحدث
+                if (event.touches.length > 1) {
                     event.preventDefault();
                 }
             }, { passive: false });
+            
+            // منع التكبير بالضغط المزدوج
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+            
+            // إضافة منع التكبير للميتا تاج (إضافة احتياطية)
+            const viewportMeta = document.querySelector('meta[name="viewport"]');
+            if (viewportMeta) {
+                viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+            }
         });
     </script>
 </body>
