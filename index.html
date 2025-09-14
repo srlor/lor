@@ -1031,6 +1031,7 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            font-size: 0.95em;
         }
         
         .comparison-table th {
@@ -1169,6 +1170,7 @@
             .comparison-table {
                 display: block;
                 overflow-x: auto;
+                font-size: 0.9em;
             }
             
             .features-section, .faq-section {
@@ -1231,6 +1233,63 @@
             .faq-question {
                 font-size: 1rem;
             }
+            
+            .comparison-table {
+                font-size: 0.85em;
+            }
+            
+            .comparison-table th, 
+            .comparison-table td {
+                padding: 8px 10px;
+            }
+        }
+        
+        /* تعديل حجم نافذة المقارنة لتكون أصغر بنسبة 5% */
+        #compare-popup .popup-box {
+            max-width: 95%;
+            transform: translateY(24px) scale(0.9);
+            font-size: 0.95em;
+        }
+        
+        #compare-popup.active .popup-box {
+            transform: translateY(0) scale(0.95);
+        }
+        
+        @media (max-width: 768px) {
+            #compare-popup .popup-box {
+                max-width: 98%;
+                padding: 15px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #compare-popup .popup-box {
+                padding: 12px 8px;
+                font-size: 0.9em;
+            }
+            
+            .comparison-table th, 
+            .comparison-table td {
+                padding: 6px 8px;
+            }
+        }
+
+        /* تأثير الضوء المتحرك السريع من اليمين لليسار */
+        .professional-shine {
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: professionalShine 3s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes professionalShine {
+            0% { right: -100%; }
+            20% { right: 100%; }
+            100% { right: 100%; }
         }
     </style>
 </head>
@@ -1259,7 +1318,7 @@
                 <div class="package-header">
                     <h2 class="package-title">الباقة الأساسية</h2>
                     <span class="old-price">3,300 ريال</span>
-                    <div class="package-price basic">2,299 ريال</div>
+                    <div class="package-price basic">2,199 ريال</div>
                     <p>قائمة إلكترونية احترافية مع ميزات أساسية</p>
                 </div>
                 
@@ -1273,7 +1332,7 @@
                         </div>
                         <div class="gift-item">
                             <div class="gift-icon"><i class="fas fa-qrcode"></i></div>
-                            <div class="gift-text">52 ملصق QR صغير (50×50)</div>
+                            <div class="gift-text">32 ملصق QR صغير (50×50)</div>
                         </div>
                         <div class="gift-item">
                             <div class="gift-icon"><i class="fas fa-qrcode"></i></div>
@@ -1323,8 +1382,11 @@
                         <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
                         <div class="feature-text">نظام حماية متكامل ضد الاختراقات</div>
                     </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-box"></i></div>
+                        <div class="feature-text">الحد الأدنى للأصناف: <strong>45 صنف</strong></div>
+                    </li>
                 </ul>
-                
                 
                 <div class="package-cta">
                     <button class="package-button basic" id="order-basic">
@@ -1341,6 +1403,7 @@
                 <div class="discount-badge">وفر 20%</div>
                 <div class="package-badge">الأكثر طلباً</div>
                 <div class="premium-background"></div>
+                <div class="professional-shine"></div>
                 
                 <div class="package-header">
                     <h2 class="package-title">الباقة الاحترافية</h2>
@@ -1363,7 +1426,7 @@
                         </div>
                         <div class="gift-item">
                             <div class="gift-icon"><i class="fas fa-qrcode"></i></div>
-                            <div class="gift-text">2 ملصق QR بحجم A4</div>
+                            <div class="gift-text">4 ملصق QR بحجم A4</div>
                         </div>
                         <div class="gift-item">
                             <div class="gift-icon"><i class="fas fa-globe"></i></div>
@@ -1428,6 +1491,14 @@
                         <div class="feature-icon"><i class="fas fa-plus-circle"></i></div>
                         <div class="feature-text"><strong>إضافة معلومات إضافية</strong> مجاناً (إضافتين)</div>
                     </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-language"></i></div>
+                        <div class="feature-text">الموقع باللغتين <strong>العربية والإنجليزية</strong></div>
+                    </li>
+                    <li class="package-feature">
+                        <div class="feature-icon"><i class="fas fa-box"></i></div>
+                        <div class="feature-text">الحد الأدنى للأصناف: <strong>52 صنف</strong></div>
+                    </li>
                 </ul>
             
                 
@@ -1469,7 +1540,7 @@
                 <div class="feature-item">
                     <i class="fas fa-qrcode"></i>
                     <h3>ملصقات QR Code</h3>
-                    <p>احصل على 52 ملصق QR Code صغير و2 ملصق بحجم A4 مجاناً لعرضها في مطعمك لتسهيل وصول العملاء إلى قائمتك الإلكترونية</p>
+                    <p>احصل على ملصقات QR Code مجاناً لعرضها في مطعمك لتسهيل وصول العملاء إلى قائمتك الإلكترونية</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-tablet-alt"></i>
@@ -1478,8 +1549,8 @@
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-globe"></i>
-                    <h3>دومين مجاني لمدة سنة</h3>
-                    <p>احصل على دومين مجاني لمدة سنة كاملة، مع خيارات تجديد مميزة بعد انتهاء المدة</p>
+                    <h3>دومين مجاني لعدة سنوات</h3>
+                    <p>احصل على دومين مجاني لعدة سنوات، مع خيارات تجديد مميزة بعد انتهاء المدة</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-camera"></i>
@@ -1495,11 +1566,20 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
+                        <span>ما هي مدة التسليم المتوقعة للقائمة الإلكترونية؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>مدة التسليم الأساسية هي 7 أيام عمل. يمكنك اختيار الخدمة المستعجلة (3 أيام) مقابل 450 ريال إضافية.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
                         <span>ماذا يشمل التابلت المجاني المقدم مع الخدمة؟</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>التابلت يأتي مع الاستاند (الحامل) والشاحن، ويتم تجهيزه لعرض المنيو الإلكتروني بشكل احترافي. يمكن للزبون تصفح المنيو بشكل فاخر واحترافي، كما أن المنيو يحتوي على حقوق المطعم ويسمح لك بإضافة حسابات السوشيال ميديا. الخدمة تناسب المطاعم والمقاهي ومحلات الحلويات. يوفر المنيو أيضاً توضيح لخدمات طرق الدفع المتوفرة بالمطعم أسفل المنيو.</p>
+                        <p>التابلت يأتي مع الاستاند (الحامل) والشاحن، ويتم تجهيزه لعرض المنيو الإلكتروني بشكل احترافي. يمكن للزبون تصفح المنيو بشكل فاخر واحترافي، كما أن المنيو يحتوي على حقوق المطعم ويسمح لك بإضافة حسابات السوشيال ميديا.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1508,7 +1588,25 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>الباقات تشمل حدًا مجانيًا يصل إلى 40 صنفًا. لكل 10 أصناف إضافية بعد ذلك، تبلغ الرسوم 25 ريالًا فقط.</p>
+                        <p>الباقة الأساسية تشمل حدًا مجانيًا يصل إلى 45 صنفًا، والباقة الاحترافية تشمل حدًا مجانيًا يصل إلى 52 صنفًا. لكل 10 أصناف إضافية بعد ذلك، تبلغ الرسوم 25 ريالًا فقط.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يمكنني شراء الخدمات الإضافية بشكل منفصل؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، جميع الخدمات الإضافية مثل التابلت الإضافي، الملصقات الإضافية، أو الخدمة المستعجلة يمكن شراؤها بشكل منفصل حسب الحاجة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ماذا عن الدومين المجاني وعروض التجديد؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الباقة الأساسية تشمل دومين مجاني لمدة 3 سنوات، والباقة الاحترافية تشمل دومين مجاني لمدة 5 سنوات. بعد انتهاء الفترة المجانية، يمكن تجديد الدومين بسعر 255 ريال لـ 3 سنوات إضافية أو 425 ريال لـ 5 سنوات إضافية.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1522,11 +1620,11 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>هل هناك رسوم شهرية أو سنوية للقائمة الإلكترونية?</span>
+                        <span>هل هناك رسوم شهرية أو سنوية للقائمة الإلكترونية؟</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>لا, القائمة الإلكترونية دائمة ولا توجد أي رسوم شهرية أو سنوية. تدفع مرة واحدة وتحصل على خدمة دائمة.</p>
+                        <p>لا، القائمة الإلكترونية دائمة ولا توجد أي رسوم شهرية أو سنوية. تدفع مرة واحدة وتحصل على خدمة دائمة.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1535,7 +1633,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>يشمل التصوير الاحترافي تصوير جميع الأصناف المدرجة في قائمتك بجودة عالية مع إضاءة مناسبة وخلفيات مهنية لعرض المنتجات بأفضل صورة.</p>
+                        <p>يشمل التصوير احترافي لجميع الأصناف المدرجة في قائمتك بجودة عالية مع إضاءة مناسبة وخلفيات مهنية لعرض المنتجات بأفضل صورة.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1549,11 +1647,11 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>ماذا عن الدومين المجاني وعروض التجديد؟</span>
+                        <span>ما هي الفروق بين الباقة الأساسية والاحترافية؟</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>تحصل على دومين مجاني لمدة 3 سنوات</p>
+                        <p>الباقة الاحترافية تشمل ميزات إضافية مثل نظام الطلب عبر الواتساب، تخصيص الألوان الكامل، خلفية متحركة، تقييم العملاء، الموقع ثنائي اللغة (عربي وإنجليزي)، وتحديثات سنوية أكثر. يمكنك الاطلاع على المقارنة الكاملة بين الباقات من خلال زر "مقارنة الباقات".</p>
                     </div>
                 </div>
             </div>
@@ -1576,7 +1674,7 @@
             
             <div class="highlight-box">
                 <div class="title">السعر الأساسي</div>
-                <div class="price" id="base-price">2,299 ريال</div>
+                <div class="price" id="base-price">2,199 ريال</div>
             </div>
             
             <div class="order-details">
@@ -1603,7 +1701,7 @@
                 
                 <div class="order-detail-item">
                     <div class="detail-label">
-                        <i class="fas fa-qrcode"></i> 52 ملصق QR صغير (50×50)
+                        <i class="fas fa-qrcode"></i> 32 ملصق QR صغير (50×50)
                     </div>
                     <div class="detail-value discount">مشمولة مجاناً</div>
                 </div>
@@ -1633,7 +1731,7 @@
                     <div class="detail-label">
                         <i class="fas fa-box"></i> الحد المجاني للأصناف
                     </div>
-                    <div class="detail-value">40 صنف</div>
+                    <div class="detail-value">45 صنف</div>
                 </div>
                 
                 <div class="order-detail-item">
@@ -1642,10 +1740,21 @@
                     </div>
                     <div class="detail-value">+25 ريال</div>
                 </div>
+                
+                <div class="order-detail-item">
+                    <div class="detail-label">
+                        <i class="fas fa-info-circle"></i> تجديد الدومين بعد 3 سنوات
+                    </div>
+                    <div class="detail-value">255 ريال لـ 3 سنوات إضافية</div>
+                </div>
             </div>
             
             <p style="margin: 16px 0; color: var(--primary); font-weight: bold;">
                 <i class="fas fa-bolt"></i> تعديلات الأسعار أو الحذف تستغرق دقائق قليلة بعد الرد على طلبك
+            </p>
+            
+            <p style="margin: 12px 0; color: var(--text-light); font-size: 0.9rem;">
+                <i class="fas fa-info-circle"></i> الخدمات الإضافية اختيارية ويمكن شراؤها بشكل مستقل حسب الحاجة
             </p>
             
             <p>لطلب الخدمة يمكنك التواصل معنا عبر الواتساب</p>
@@ -1743,6 +1852,11 @@
                         <td>إضافتين مجاناً</div></td>
                     </tr>
                     <tr>
+                        <td><div class="feature-name"><i class="fas fa-language"></i> اللغات المتاحة</div></td>
+                        <td>العربية فقط</td>
+                        <td>العربية والإنجليزية</td>
+                    </tr>
+                    <tr>
                         <td><div class="feature-name"><i class="fas fa-shield-halved"></i> نظام حماية متكامل</div></td>
                         <td><i class="fas fa-check"></i></td>
                         <td><i class="fas fa-check"></i></td>
@@ -1753,14 +1867,19 @@
                         <td><i class="fas fa-check"></i></td>
                     </tr>
                     <tr>
-                        <td><div class="feature-name"><i class="fas fa-qrcode"></i> ملصقات QR Code</div></td>
-                        <td>52 صغير + 2 A4</td>
-                        <td>52 صغير + 2 A4</td>
+                        <td><div class="feature-name"><i class="fas fa-qrcode"></i> ملصقات QR Code صغيرة</div></td>
+                        <td>32 ملصق</td>
+                        <td>52 ملصق</td>
+                    </tr>
+                    <tr>
+                        <td><div class="feature-name"><i class="fas fa-qrcode"></i> ملصقات QR Code كبيرة (A4)</div></td>
+                        <td>2 ملصق</td>
+                        <td>4 ملصق</td>
                     </tr>
                     <tr>
                         <td><div class="feature-name"><i class="fas fa-globe"></i> دومين مجاني</div></td>
-                        <td>سنة واحدة</td>
-                        <td>سنة واحدة</td>
+                        <td>3 سنوات</td>
+                        <td>5 سنوات</td>
                     </tr>
                     <tr>
                         <td><div class="feature-name"><i class="fas fa-infinity"></i> موقع دائم</div></td>
@@ -1774,8 +1893,8 @@
                     </tr>
                     <tr>
                         <td><div class="feature-name"><i class="fas fa-box"></i> الحد المجاني للأصناف</div></td>
-                        <td>40 صنف</td>
-                        <td>40 صنف</td>
+                        <td>45 صنف</td>
+                        <td>52 صنف</td>
                     </tr>
                     <tr>
                         <td><div class="feature-name"><i class="fas fa-plus-circle"></i> أصناف إضافية (لكل 10 أصناف)</div></td>
@@ -1784,12 +1903,12 @@
                     </tr>
                     <tr>
                         <td><div class="feature-name"><i class="fas fa-money-bill-wave"></i> السعر الأساسي</div></td>
-                        <td>2,299 ريال</td>
-                        <td>3,200 ريال</td>
+                        <td>2,199 ريال</td>
+                        <td>3,099 ريال</td>
                     </tr>
                     <tr>
                         <td><div class="feature-name"><i class="fas fa-tag"></i> السعر الأصلي</div></td>
-                        <td><span style="text-decoration: line-through;">3,099 ريال</span></td>
+                        <td><span style="text-decoration: line-through;">3,300 ريال</span></td>
                         <td><span style="text-decoration: line-through;">4,000 ريال</span></td>
                     </tr>
                 </tbody>
@@ -1844,14 +1963,14 @@
             
             orderBasicButton.addEventListener('click', function() {
                 packageName.textContent = 'طلب الباقة الأساسية';
-                basePrice.textContent = '2,500 ريال';
+                basePrice.textContent = '2,199 ريال';
                 orderDetailsPopup.classList.add('active');
                 createConfetti();
             });
             
             orderProfessionalButton.addEventListener('click', function() {
                 packageName.textContent = 'طلب الباقة الاحترافية';
-                basePrice.textContent = '3,200 ريال';
+                basePrice.textContent = '3,099 ريال';
                 orderDetailsPopup.classList.add('active');
                 createConfetti();
             });
@@ -1938,7 +2057,7 @@
                     particle.style.background = type === 'triangle' ? 'transparent' : color;
                     particle.style.color = color;
                     particle.style.top = `${Math.random() * 100}%`;
-                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.left = `${Math.random() * 100%`;
                     
                     // توقيت ومدة الحركة
                     const duration = Math.random() * 30 + 20;
@@ -1983,4 +2102,3 @@
     </script>
 </body>
 </html>
-
